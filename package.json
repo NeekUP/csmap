@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "vuepress": "^1.7.1",
+    "vuepress-plugin-seo": "^0.1.2"
+  },
+  "dependencies": {
+    "d3": "^6.3.1",
+    "vuepress-plugin-mathjax": "^1.2.8"
+  },
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  }
+}

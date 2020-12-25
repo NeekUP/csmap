@@ -1,0 +1,1 @@
+1. ## [Building a simple neural net in Java](http://ya.ru)

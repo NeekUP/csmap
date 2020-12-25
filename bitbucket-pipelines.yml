@@ -1,0 +1,27 @@
+image: node
+pipelines:
+  branches:
+    master:
+    - step:
+        name: Build
+        caches: 
+          - node
+        script:
+          - npm install
+          - npm run build
+        artifacts:
+          - .vuepress/dist/**
+    - step:
+        name: View Files
+        script:
+          - pwd
+          - ls -la .vuepress/dist/
+    - step:
+        script:
+        - pipe: atlassian/ftp-deploy:0.3.3
+          variables:
+            USER: h007372475_ftp
+            PASSWORD: $FTP_PASSWORD
+            SERVER: ftp.h007372475.nichost.ru
+            REMOTE_PATH: /notes.nikita.popovsky.pro/docs
+            LOCAL_PATH: .vuepress/dist
