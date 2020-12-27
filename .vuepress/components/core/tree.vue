@@ -10,7 +10,7 @@ import mapData from '../../../tree/map.json'
 export default {
   data() {
     return {
-      width: 954,
+      width: 1000,
       modelex: null,
       data: mapData[0],
     };
