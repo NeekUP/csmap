@@ -1,8 +1,6 @@
----
-home: true
-heroImage: /hero.png
-heroText: Roadmaps Light
-tagline: on vuepress
-actionText: Map
-actionLink: /tree/
----
+
+# [Map](/tree)
+## TODO
+- unique id for every topics
+- create links to topics from id
+- responsive map
