@@ -1,5 +1,6 @@
 ---
 topic: Linked List
+id: f5b7cf24-1f65-45e1-aeea-fc825b1b563c
 tags:
   - Linked 
   - List
