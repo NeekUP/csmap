@@ -1,5 +1,6 @@
 ---
 topic: Bloom filter
+id: 8dec21a5-2e63-4da2-92c7-80578fc7f3f4
 ---
 
 <core-step title="Wikipedia | Bloom filter" url="https://en.wikipedia.org/wiki/Bloom_filter" type="article" author="https://github.com/NeekUP" desc="" />

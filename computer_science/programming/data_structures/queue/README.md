@@ -1,5 +1,6 @@
 ---
 topic: Queue
+id: ff5b360f-0e38-4dc1-b066-742223a4e93c
 ---
 
 <core-step title="Wikipedia | Queue (abstract data type)" url="https://en.wikipedia.org/wiki/Queue_(abstract_data_type)" type="article" author="https://github.com/NeekUP" desc="" />
