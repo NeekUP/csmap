@@ -1,5 +1,6 @@
 ---
-topic: Bloom filter
+type: topic
+name: Bloom filter
 id: 8dec21a5-2e63-4da2-92c7-80578fc7f3f4
 ---
 

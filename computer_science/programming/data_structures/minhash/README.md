@@ -1,5 +1,6 @@
 ---
-topic: MinHash
+type: topic
+name: MinHash
 id: aa65b9f9-9e13-4c1a-8dd0-d329ff952e79
 ---
 

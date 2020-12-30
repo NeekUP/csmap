@@ -1,5 +1,6 @@
 ---
-topic: Sets
+type: topic
+name: Sets
 id: 9c2032fe-8f93-45fe-9404-13e0c4c4f67a
 ---
 

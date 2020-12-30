@@ -1,5 +1,6 @@
 ---
-topic: Circular buffer
+type: topic
+name: Circular buffer
 id: 77b2aa3a-f005-41ca-a25a-8a4fd648d5fd
 ---
 

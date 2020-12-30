@@ -7,10 +7,6 @@ const root = "./programming"
 const topicFile = "README.md";
 const slash = require('slash');
 
-var isTopicFolder = function (fn) {
-    return fn && path.basename(fn) == topicFile
-}
-
 var getValue = function (line){
     var parts = line.split(":", 2)
     if (parts.length == 2) {
@@ -23,7 +19,7 @@ var parseTopicFile = function (lines) {
     /* 
     0 - ready, 
     1 - inside description, 
-    2 - exit from block*/
+    2 - exit from block */
     var state = 0;
     var info = null
     for (var i = 0; i < lines.length; i++) {
@@ -40,55 +36,48 @@ var parseTopicFile = function (lines) {
                     info.type = getValue(line);
                 } else if (line.startsWith('name')) {
                     info.name = getValue(line);
+                } else if (line.startsWith('id')) {
+                    info.id = getValue(line);
                 } else if (line.startsWith('---')) {
                     state = 2
                 }
                 break;
             case 2:
-                if (info.type === 'topic')
-                    return info;
-                else
-                    return null;
+                return info;
         }
     }
 
     return info;
 }
 
-var dirTree = function (filename, root) {
+var dirTree = function (filename, root, array) {
     var stats = fs.lstatSync(filename);
-
-
     if (stats.isDirectory()) {
-        var info = {
-            url: slash(filename.substring(root.length)) + "/",
-            name: path.basename(filename)
-        };
-
         var readme = path.join(filename, "README.md");
         if (fs.existsSync(readme)) {
             var lines = fs.readFileSync(readme, 'utf-8').split('\n');
-            var fileInfo = parseTopicFile(lines);
-            if (fileInfo.name) {
-                info.name = fileInfo.name
+            var info = parseTopicFile(lines);
+            if (info) {
+                info.url = slash(filename.substring(root.length)) + "/";
+                array.push(info)
             }
         }
         var child = fs.readdirSync(filename);
 
-        info.children = [];
         child.forEach(function (c) {
             if (c != null) {
-                var tree = dirTree(path.join(filename, c), root);
-                if (tree != null)
-                    info.children.push(tree)
+                dirTree(path.join(filename, c), root, array);
             }
         });
-
-
-        return info;
     }
 
-    return null;
+}
+
+var mapToObj = function (map){
+    const obj = {}
+    for (let [k,v] of map)
+      obj[k] = v
+    return obj
 }
 
 module.exports = {
@@ -99,17 +88,17 @@ module.exports = {
             return path.join(workDir, child);
         });
 
-        var map = [];
+        var array = [];
         children.forEach(function (ch) {
             var name = ch.substring(workDir.length + 1)
             if (!ignoredDirs.includes(name) && fs.lstatSync(ch).isDirectory()) {
-                map.push(dirTree(ch, workDir))
+                dirTree(ch, workDir, array)
             }
         });
-        var json = JSON.stringify(map);
+        var json = JSON.stringify(array);
         // var tree_ = fs.readFileSync(path.join(workDir,".vuepress/components/core/tree_.vue"))
         // var tree_new = tree_.toString().replace("%map%",json );
-        fs.writeFileSync(path.join(workDir, "tree/map.json"), json)
+        fs.writeFileSync(path.join(workDir, "refs.json"), json)
         //console.log(util.inspect(map, false, null, true))
     }
 }

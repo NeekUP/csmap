@@ -1,5 +1,6 @@
 ---
-topic: Binary Heap
+type: topic
+name: Binary Heap
 id: b09bcb8a-3913-45a7-bc22-a3194d8d24a8
 ---
 

@@ -1,5 +1,6 @@
 ---
-topic: Stack
+type: topic
+name: Stack
 id: 2bf8741c-b7f5-4aa9-af59-c95acfc18f8b
 ---
 

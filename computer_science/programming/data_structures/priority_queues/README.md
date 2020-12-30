@@ -1,5 +1,6 @@
 ---
-topic: Priority queues
+type: topic
+name: Priority queues
 id: 8806b7c9-57dc-437e-9621-7e4fa9aade6a
 ---
 

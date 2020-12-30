@@ -1,5 +1,6 @@
 ---
-topic: Array
+type: topic
+name: Array
 id: 1545f41a-bbdd-4a19-9cac-ed781a09b132
 tags:
   - array
