@@ -1,5 +1,6 @@
 ---
-topic: Queue
+type: topic
+name: Queue
 id: ff5b360f-0e38-4dc1-b066-742223a4e93c
 ---
 

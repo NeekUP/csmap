@@ -1,5 +1,6 @@
 ---
-topic: Disjoint-set
+type: topic
+name: Disjoint-set
 id: b2a07e8d-903f-491a-9026-9c1c4782a43d
 ---
 

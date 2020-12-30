@@ -31,6 +31,7 @@ module.exports = {
     // }
   },
   plugins: [
-    require('./plugins/graph-plugin.js')
+    require('./plugins/graph-plugin.js'),
+    require('./plugins/findRefs.js'),
   ]
 };

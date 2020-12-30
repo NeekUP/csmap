@@ -3,16 +3,14 @@
     <!-- <div><img :src="author+ '.png'" :alt="author" :width="imgWidth" :height="imgHeight"/></div> -->
     <div>
       <h2>
-        <a :href="url">{{ title }}</a>
+        <a :href="u">{{ t }}</a>
       </h2>
     </div>
     <p>
       added by:
-      <a
-        href="https://github.com/NeekUP"
-        target="_blank"
-        rel="noopener noreferrer"
-        >NeekUP<span><svg
+      <a :href="a" target="_blank" rel="noopener noreferrer"
+        >NeekUP<span
+          ><svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             focusable="false"
@@ -21,7 +19,8 @@
             viewBox="0 0 100 100"
             width="15"
             height="15"
-            class="icon outbound">
+            class="icon outbound"
+          >
             <path
               fill="currentColor"
               d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
@@ -34,25 +33,64 @@
           <span class="sr-only">(opens new window)</span></span
         ></a
       >
-      type: <code>article</code> url: <code>http://ya.ru/</code>
+      type: <code>{{ tp }}</code> <span v-if="h"> domain: <code>{{ h }}</code></span>
     </p>
   </div>
 </template>
 
 <script>
+import refsData from "../../../refs.json";
 export default {
   data: function () {
     return {
-      imgWidth: 32,
-      imgHeight: 32,
+      t: "",
+      u: "",
+      h: "",
+      a: "",
+      d: "",
+      tp: "",
     };
   },
   props: {
     title: String,
+    reference: String,
     url: String,
     type: String,
     author: String,
     desc: String,
+  },
+  created: function () {
+    this.t = this.title;
+    this.u = this.url;
+    this.a = this.author;
+    this.d = this.desc;
+    this.tp = this.type;
+    this.h = this.getHost(this.u)
+
+    if (this.reference) {
+      var r = this.getRef(this.reference);
+      if (r) {
+        this.t = r.name;
+        this.u = r.url;
+        this.tp = r.type;
+      } else {
+        this.t = "[link not found]";
+        this.u = "/404.html";
+        this.tp = "unknown";
+      }
+    }
+  },
+  methods: {
+    getHost: function (url) {
+      if (!url || !url.includes("://")) return null;
+      var a = document.createElement("a");
+      a.href = url;
+      return a.hostname;
+    },
+    getRef: function (ref) {
+      var r = refsData.find((a) => a.id == ref);
+      return r;
+    },
   },
 };
 </script>
