@@ -1,8 +1,12 @@
 module.exports = {
-  title: "Roadmaps Light",
-  description: "Roadmaps Light",
+  title: "Roadmaps",
+  description: null,
   themeConfig: {
     lastUpdated: 'Last Updated',
+    repo: 'NeekUP/csmap',
+    editLinks: true,
+    docsBranch: 'main',
+    editLinkText: 'Help us improve this page!',
     search: true,
     searchMaxSuggestions: 20,
     nav: [
