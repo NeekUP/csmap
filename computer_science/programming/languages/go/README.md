@@ -3,3 +3,6 @@ type: topic
 name: Go
 id: 9257cf54-9700-4f36-85fb-457491614553
 ---
+
+<core-topic-header/>
+<core-steps/>

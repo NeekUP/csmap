@@ -8,8 +8,6 @@ steps:
     url: http://ya.ru/
     type: article
     addedBy: https://github.com/NeekUP
-    desc:
-    ref:
 --- 
 <core-topic-header/>
 <core-steps/>

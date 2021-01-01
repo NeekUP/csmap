@@ -1,10 +1,16 @@
 module.exports = (options = {}, context) => ({
-    extendPageData ($page) {
-      var steps = $page.frontmatter.steps;
-      if(steps){
-        $page._strippedContent = "sdsdsdsd"
-        console.log($page)
-      }
-      //console.log($context)
+  extendPageData($page) {
+    var name = $page.frontmatter.name;
+    if (name) {
+
+      var nameWords = name.split('/[\s:-_]/')
+      if (!$page.frontmatter.tags)
+        $page.frontmatter.tags = []
+
+      $page.frontmatter.tags.push(...nameWords)
+      $page.frontmatter.title = name
+      //console.log($page.frontmatter)
     }
-  })
+    //console.log($context)
+  }
+})
