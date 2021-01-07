@@ -17,8 +17,7 @@ module.exports = {
     lineNumbers: true,
   },
   plugins: [
-    require('./plugins/buildTree.js'),
-    require('./plugins/findRefs.js'),
-    require('./plugins/createPages.js'),
+    require('./plugins/buildTree.js'),    
+    require('./plugins/extendPages.js')
   ]
 };

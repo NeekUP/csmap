@@ -93,6 +93,7 @@ var dirTree = function (filename, root) {
 
 module.exports = {
     async ready() {
+        console.log("ready")
         var ignoredDirs = [".vuepress", "node_modules", "tree", ".git"]
         var workDir = process.cwd()
         var children = fs.readdirSync(workDir).map(function (child) {
@@ -107,9 +108,7 @@ module.exports = {
             }
         });
         var json = JSON.stringify(map);
-        // var tree_ = fs.readFileSync(path.join(workDir,".vuepress/components/core/tree_.vue"))
-        // var tree_new = tree_.toString().replace("%map%",json );
         fs.writeFileSync(path.join(workDir, "tree/map.json"), json)
-        //console.log(util.inspect(map, false, null, true))
-    }
+    },
+
 }
