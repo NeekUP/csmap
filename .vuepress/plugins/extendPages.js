@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 var pageList = []
+var treeRoot = null
 
 var setTitle = function (page) {
   if (page.frontmatter.name) {
@@ -29,14 +30,71 @@ var addToList = function (page) {
   }
 }
 
+var setTreeRoot = function (name, url) {
+  treeRoot = {
+    url: url,
+    name: name,
+    children: []
+  }
+}
+
+var addToTree = function (page) {
+  if (page.frontmatter.type == "topic") {
+    var parent = null;
+    var parts = page.path.split('/').filter(s => s.length > 0);
+    parts.forEach(p => {
+      if (parent == null) {
+        if (treeRoot == null) {
+          setTreeRoot(page.frontmatter.name, `/${p}/`)
+        }
+        parent = treeRoot;
+      } else {
+        var url = parent.url + p + '/';
+        var exists = parent.children.find(f => f.url == url);
+        if (url != page.path) {
+          if (exists) {
+            parent = exists;
+          } else {
+            var current = {
+              url: url,
+              children: []
+            }
+            parent.children.push(current)
+            parent = current
+          }
+        } else {
+
+          if (exists) {
+            exists.name = page.frontmatter.name;
+          } else {
+
+            var current = {
+              url: url,
+              name: page.frontmatter.name,
+              children: []
+            }
+            parent.children.push(current)
+            parent = current
+          }
+        }
+      }
+
+    });
+  }
+}
+
 module.exports = (options = {}, context) => ({
   extendPageData($page) {
     setTitle($page)
     setTags($page)
     addToList($page)
+    addToTree($page)
   },
 
   async ready() {
-    fs.writeFileSync("refs.json",JSON.stringify(pageList))
+    fs.writeFileSync("refs.json", JSON.stringify(pageList))
+    var treeArray = []
+    treeArray.push(treeRoot)
+    fs.writeFileSync("tree/map.json", JSON.stringify(treeArray))
   },
 })
